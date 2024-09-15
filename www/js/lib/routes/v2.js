@@ -91,7 +91,7 @@ class RoutesV2 extends RoutesV1 {
 	async suggestSectionsBySourceSectionTitles( req, res ) {
 		const sourceLanguage = req.params.from.split( '.' )[ 0 ];
 		const targetLanguage = req.params.to.split( '.' )[ 0 ];
-		if ( !languageData.isKnown( sourceLanguage ) ) {
+		if ( !languageData.isKnown( sourceLanguage ) && sourceLanguage != 'mdwiki' ) {
 			return res.status( 400 )
 				.end( `Invalid source language code for suggesting target sections by source section titles: ${ sourceLanguage }` );
 		}
@@ -130,7 +130,7 @@ class RoutesV2 extends RoutesV1 {
 		// domain pattern configured by mw_host
 		const sourceLanguage = req.params.sourcelanguage.split( '.' )[ 0 ];
 		const targetLanguage = req.params.targetlanguage.split( '.' )[ 0 ];
-		if ( !languageData.isKnown( sourceLanguage ) ) {
+		if ( !languageData.isKnown( sourceLanguage ) && sourceLanguage != 'mdwiki') {
 			return res.status( 400 )
 				.end( `Invalid language code for page fetch: ${ sourceLanguage }` );
 		}
@@ -318,7 +318,7 @@ class RoutesV2 extends RoutesV1 {
 		const sourceLanguage = req.params.from;
 		const targetLanguage = req.params.to;
 		const sourceTitle = req.params.title;
-		if ( !languageData.isKnown( sourceLanguage ) ) {
+		if ( !languageData.isKnown( sourceLanguage ) && sourceLanguage != 'mdwiki' ) {
 			return res.status( 400 )
 				.end( `Invalid language code for suggesting sections: ${ sourceLanguage }` );
 		}

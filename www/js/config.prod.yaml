@@ -40,6 +40,8 @@ services:
     # per-service config
     conf:
       port: 8080
+      # private_key: path to private key file for enabling https
+      # certificate: path to certificate file for enabling https
       # interface: localhost # uncomment to only listen on localhost
       # More per-service config settings
       # The location of the spec, defaults to spec.yaml if not specified
@@ -85,14 +87,12 @@ services:
       templatemapping:
         database: config/templatemapping.db
       sectionmapping:
-        database: cxserverdb
-        host: m5-master.codfw.wmnet
-        user: cxserver
-        password: cxserverdbpassword
-        type: mysql
+        database: config/cx-section-titles-aligned.db
+        type: sqlite
       mt:
         Apertium:
           api: https://apertium.wmflabs.org
+          # For packaging reasons use separate configuration
           languages: config/Apertium.yaml
         Elia:
           api: https://mt-api.elhuyar.eus/translate_string

@@ -120,6 +120,9 @@ class MWApiRequest {
 	}
 
 	getDomain( language ) {
+		if  ( language === 'mdwiki' ) {
+			return 'mdwiki.org';
+		}
 		const code = this.getSiteCode( language );
 		return ( this.context.conf.mw_host || '{lang}.wikipedia.org' ).replace( '{lang}', code );
 	}

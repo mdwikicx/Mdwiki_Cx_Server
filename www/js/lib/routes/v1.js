@@ -93,7 +93,7 @@ class RoutesV1 {
 		// domain pattern configured by mw_host
 		const sourceLanguageOrDomain = req.params.language;
 		const sourceLanguage = sourceLanguageOrDomain.split( '.' )[ 0 ];
-		if ( !languageData.isKnown( sourceLanguage ) ) {
+		if ( !languageData.isKnown( sourceLanguage ) && sourceLanguage != 'mdwiki') {
 			return res.status( 400 )
 				.end( `Invalid language code for page fetch: ${ sourceLanguage }` );
 		}
